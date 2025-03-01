@@ -34,7 +34,7 @@ export const baserowAPI = {
   },
 
   // Função para criar um novo registro em uma tabela
-  async createRow(tableId: number, data: any) {
+  async createRow(tableId: number, data: Record<string, unknown>) {
     try {
       const response = await baserowClient.post(`/database/rows/table/${tableId}/`, data);
       return response.data;
@@ -45,7 +45,7 @@ export const baserowAPI = {
   },
 
   // Função para atualizar um registro existente
-  async updateRow(tableId: number, rowId: number, data: any) {
+  async updateRow(tableId: number, rowId: number, data: Record<string, unknown>) {
     try {
       const response = await baserowClient.patch(`/database/rows/table/${tableId}/${rowId}/`, data);
       return response.data;

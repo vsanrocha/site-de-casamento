@@ -38,8 +38,8 @@ export async function GET() {
     const results = await baserowAPI.getRows(TABLES.MESSAGES);
     
     // Ordenar mensagens por data (mais recentes primeiro)
-    const sortedResults = results.sort((a: any, b: any) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    const sortedResults = results.sort((a: Record<string, unknown>, b: Record<string, unknown>) => {
+      return new Date(b.date as string).getTime() - new Date(a.date as string).getTime();
     });
     
     return NextResponse.json({ success: true, data: sortedResults });

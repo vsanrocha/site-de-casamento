@@ -1,13 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import Image from "next/image";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
-import axios from 'axios';
-import { FiUser, FiMessageSquare, FiHeart } from 'react-icons/fi';
+import { FiUser } from 'react-icons/fi';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";

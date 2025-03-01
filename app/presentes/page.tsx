@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from "next/image";
 import { motion } from 'framer-motion';
 import { FiDollarSign, FiHeart } from 'react-icons/fi';
 import Header from "../components/Header";

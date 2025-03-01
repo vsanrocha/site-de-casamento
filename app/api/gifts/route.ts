@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { baserowAPI, TABLES, GiftData } from '@/app/utils/baserow';
+import { baserowAPI, TABLES } from '@/app/utils/baserow';
 
 export async function GET() {
   try {
     const results = await baserowAPI.getRows(TABLES.GIFTS);
     
     // Ordenar presentes por categoria e depois por nome
-    const sortedResults = results.sort((a: any, b: any) => {
+    const sortedResults = results.sort((a: Record<string, unknown>, b: Record<string, unknown>) => {
       if (a.category === b.category) {
-        return a.name.localeCompare(b.name);
+        return (a.name as string).localeCompare(b.name as string);
       }
-      return a.category.localeCompare(b.category);
+      return (a.category as string).localeCompare(b.category as string);
     });
     
     return NextResponse.json({ success: true, data: sortedResults });
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     
     // Buscar o presente atual para verificar se já está reservado
     const gifts = await baserowAPI.getRows(TABLES.GIFTS);
-    const gift = gifts.find((g: any) => g.id === giftId);
+    const gift = gifts.find((g: Record<string, unknown>) => g.id === giftId);
     
     if (!gift) {
       return NextResponse.json(

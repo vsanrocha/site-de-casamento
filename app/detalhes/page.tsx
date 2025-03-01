@@ -1,12 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
-import { FiMapPin, FiCalendar, FiClock, FiInfo, FiShare2 } from "react-icons/fi";
+import { FiMapPin, FiCalendar, FiClock, FiInfo } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
 import Hero from "../components/Hero";
-import { Button } from "@/components/ui/button";
 
 export default function DetalhesPage() {
   const localAddress = "R. Vereador Nozinho Caldeira, 418 - Centro, João Monlevade - MG, 35700-000";
