@@ -11,6 +11,7 @@ import { FiUser, FiMessageSquare, FiHeart } from 'react-icons/fi';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
+import Hero from "../components/Hero";
 
 // Exemplo de recados
 const initialMessages = [
@@ -103,27 +104,11 @@ export default function RecadosPage() {
     <>
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Ivan e Mirela"
-            fill
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-            Recados
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            Deixe uma mensagem especial para os noivos
-          </p>
-        </div>
-      </section>
+      <Hero 
+        imagePath="/images/hero-bg.jpg"
+        title="Recados"
+        subtitle="Deixe uma mensagem especial para os noivos"
+      />
       
       {/* Form Section */}
       <Section>

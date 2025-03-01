@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
 import PhotoGrid from "../components/PhotoGrid";
+import Hero from "../components/Hero";
 
 // Dados das fotos
 const photos = [
@@ -76,27 +77,11 @@ export default function GaleriaPage() {
     <>
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/gallery-1.jpg"
-            alt="Ivan e Mirela"
-            fill
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-            Nossa Galeria
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            Momentos especiais da nossa jornada juntos
-          </p>
-        </div>
-      </section>
+      <Hero 
+        imagePath="/images/gallery-1.jpg"
+        title="Nossa Galeria"
+        subtitle="Momentos especiais da nossa jornada juntos"
+      />
       
       {/* Gallery Section */}
       <Section>

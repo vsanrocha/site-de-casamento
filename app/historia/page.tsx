@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
 import Timeline from "../components/Timeline";
+import Hero from "../components/Hero";
 
 // Dados da timeline
 const timelineEvents = [
@@ -55,27 +56,11 @@ export default function HistoriaPage() {
     <>
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/couple-story.jpg"
-            alt="Ivan e Mirela"
-            fill
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-            Nossa História
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            Como um simples encontro se transformou em uma história de amor
-          </p>
-        </div>
-      </section>
+      <Hero 
+          imagePath="/images/timeline-1.jpg"
+        title="Nossa História"
+        subtitle="Como um simples encontro se transformou em uma história de amor"
+      />
       
       {/* Intro Section */}
       <Section>

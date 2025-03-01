@@ -8,6 +8,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
 import GiftCard from "../components/GiftCard";
+import Hero from "../components/Hero";
+import { Button } from '@/components/ui/button';
 
 // Categorias de presentes
 const categories = [
@@ -107,28 +109,11 @@ export default function PresentesPage() {
     <>
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero-bg-light.jpg"
-            alt="Ivan e Mirela"
-            fill
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-primary/30" />
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-            Lista de Presentes
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            Sua presença é o nosso maior presente, mas se desejar nos presentear, 
-            aqui estão algumas sugestões
-          </p>
-        </div>
-      </section>
+      <Hero 
+        imagePath="/images/hero-bg-light.jpg"
+        title="Lista de Presentes"
+        subtitle="Sua presença é o nosso maior presente, mas se desejar nos presentear, aqui estão algumas sugestões"
+      />
       
       {/* Intro Section */}
       <Section>
@@ -140,13 +125,12 @@ export default function PresentesPage() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <button
+            <Button
               onClick={() => setShowPix(!showPix)}
-              className="btn btn-primary flex items-center gap-2"
             >
               <FiDollarSign />
               Contribuir para Lua de Mel
-            </button>
+            </Button>
           </div>
           
           {showPix && (

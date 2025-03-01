@@ -5,6 +5,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
+import Hero from "../components/Hero";
+import { Button } from "@/components/ui/button";
 
 export default function DetalhesPage() {
   const localAddress = "R. Vereador Nozinho Caldeira, 418 - Centro, João Monlevade - MG, 35700-000";
@@ -15,27 +17,11 @@ export default function DetalhesPage() {
     <>
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Ivan e Mirela"
-            fill
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-            Detalhes do Evento
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            Todas as informações que você precisa para o nosso grande dia
-          </p>
-        </div>
-      </section>
+      <Hero 
+        imagePath="/images/hero-bg.jpg"
+        title="Detalhes do Evento"
+        subtitle="Todas as informações que você precisa para o nosso grande dia"
+      />
       
       {/* Main Content */}
       <Section>
@@ -118,28 +104,8 @@ export default function DetalhesPage() {
             </div>
           </div>
           
-          {/* Right Column - Map and More Info */}
-          <div className="space-y-8">
-            <iframe
-              src={mapEmbedUrl}
-              width="100%" 
-              height="400" 
-              style={{border:0}}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-            
-            <div className="flex justify-center">
-              <a 
-                href={whatsappShareUrl}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-primary inline-flex items-center"
-              >
-                <FaWhatsapp className="mr-2 text-lg" /> Compartilhar Endereço
-              </a>
-            </div>
-            
+          {/* Right Column - More Info */}
+          <div className="space-y-8">            
             <div className="bg-secondary p-6 rounded-lg">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-full text-primary">
@@ -174,6 +140,23 @@ export default function DetalhesPage() {
               </div>
             </div>
           </div>
+        </div>
+      </Section>
+      
+      {/* Full Width Map Section */}
+      <Section className="px-0 py-12">
+        <div className="w-full">
+          <iframe
+            src={mapEmbedUrl}
+            width="100%" 
+            height="500" 
+            style={{border:0}}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full"
+            title="Localização do Evento"
+            aria-label="Mapa mostrando a localização do evento"
+          ></iframe>
         </div>
       </Section>
       
