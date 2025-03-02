@@ -1,19 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { baserowAPI, TABLES } from '@/app/utils/baserow';
+import { supabase, TABLES, GiftData } from '@/lib/supabase';
 
 export async function GET() {
   try {
-    const results = await baserowAPI.getRows(TABLES.GIFTS);
+    // Esta rota não deve ser acessível publicamente em produção
+    // Adicione autenticação adequada antes de usar em ambiente real
     
-    // Ordenar presentes por categoria e depois por nome
-    const sortedResults = results.sort((a: Record<string, unknown>, b: Record<string, unknown>) => {
-      if (a.category === b.category) {
-        return (a.name as string).localeCompare(b.name as string);
-      }
-      return (a.category as string).localeCompare(b.category as string);
-    });
+    const { data, error } = await supabase
+      .from(TABLES.GIFTS)
+      .select('*')
+      .order('created_at', { ascending: false });
+      
+    if (error) {
+      console.error('Erro ao buscar no Supabase:', error);
+      return NextResponse.json(
+        { error: 'Ocorreu um erro ao buscar os presentes.' },
+        { status: 500 }
+      );
+    }
     
-    return NextResponse.json({ success: true, data: sortedResults });
+    return NextResponse.json({ success: true, data });
   } catch (error) {
     console.error('Erro ao buscar presentes:', error);
     return NextResponse.json(
@@ -25,47 +31,45 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { giftId, name, email } = await request.json();
+    const data = await request.json();
     
     // Validação básica
-    if (!giftId || !name || !email) {
+    if (!data.gift_id || !data.name || !data.email) {
       return NextResponse.json(
         { error: 'Dados incompletos. Por favor, preencha todos os campos obrigatórios.' },
         { status: 400 }
       );
     }
     
-    // Buscar o presente atual para verificar se já está reservado
-    const gifts = await baserowAPI.getRows(TABLES.GIFTS);
-    const gift = gifts.find((g: Record<string, unknown>) => g.id === giftId);
-    
-    if (!gift) {
-      return NextResponse.json(
-        { error: 'Presente não encontrado.' },
-        { status: 404 }
-      );
-    }
-    
-    if (gift.reserved) {
-      return NextResponse.json(
-        { error: 'Este presente já foi reservado por outra pessoa.' },
-        { status: 400 }
-      );
-    }
-    
-    // Atualizar o presente como reservado
-    const updateData = {
-      reserved: true,
-      reserved_by: name,
-      reserved_email: email,
-      reserved_date: new Date().toISOString(),
+    // Formatar os dados para o Supabase
+    const giftData = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone || '',
+      gift_id: data.gift_id,
+      gift_title: data.gift_title,
+      gift_price: data.gift_price,
+      message: data.message || '',
+      created_at: new Date().toISOString(),
     };
     
-    const result = await baserowAPI.updateRow(TABLES.GIFTS, giftId, updateData);
+    // Enviar para o Supabase
+    const { data: result, error } = await supabase
+      .from(TABLES.GIFTS)
+      .insert(giftData)
+      .select();
+      
+    if (error) {
+      console.error('Erro ao inserir no Supabase:', error);
+      return NextResponse.json(
+        { error: 'Ocorreu um erro ao processar seu presente. Por favor, tente novamente.' },
+        { status: 500 }
+      );
+    }
     
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
-    console.error('Erro ao reservar presente:', error);
+    console.error('Erro ao processar presente:', error);
     return NextResponse.json(
       { error: 'Ocorreu um erro ao reservar o presente. Por favor, tente novamente.' },
       { status: 500 }

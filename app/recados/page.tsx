@@ -1,41 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import { FiUser } from 'react-icons/fi';
+import axios from 'axios';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
 import Hero from "../components/Hero";
 
-// Exemplo de recados
-const initialMessages = [
-  {
-    id: 1,
-    name: "Maria Silva",
-    message: "Que a felicidade de vocês seja eterna! Mal posso esperar para celebrar esse dia tão especial.",
-    date: "2025-02-15T14:30:00Z",
-  },
-  {
-    id: 2,
-    name: "João Oliveira",
-    message: "Vocês são um exemplo de amor e companheirismo. Parabéns pelo casamento!",
-    date: "2025-02-10T09:15:00Z",
-  },
-  {
-    id: 3,
-    name: "Ana e Pedro",
-    message: "Desejamos a vocês todo o amor do mundo! Que essa união seja abençoada e cheia de momentos felizes.",
-    date: "2025-02-05T18:45:00Z",
-  },
-];
-
 interface MessageFormData {
   name: string;
   message: string;
+}
+
+interface Message {
+  id: string;
+  name: string;
+  message?: string;
+  content: string;
+  created_at: string;
 }
 
 const schema = yup.object({
@@ -44,8 +31,9 @@ const schema = yup.object({
 }).required();
 
 export default function RecadosPage() {
-  const [messages, setMessages] = useState(initialMessages);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
 
@@ -58,29 +46,41 @@ export default function RecadosPage() {
     resolver: yupResolver(schema),
   });
 
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get('/api/messages');
+        if (response.data.success) {
+          setMessages(response.data.data || []);
+        }
+      } catch (err) {
+        console.error('Erro ao buscar recados:', err);
+        setError('Não foi possível carregar os recados. Por favor, tente novamente mais tarde.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMessages();
+  }, []);
+
   const onSubmit = async (data: MessageFormData) => {
     setIsSubmitting(true);
     setError('');
     
     try {
-      // Em um ambiente real, enviaríamos para a API
-      // await axios.post('/api/messages', data);
+      const response = await axios.post('/api/messages', data);
       
-      // Simulando o envio bem-sucedido
-      const newMessage = {
-        id: messages.length + 1,
-        name: data.name,
-        message: data.message,
-        date: new Date().toISOString(),
-      };
-      
-      setMessages([newMessage, ...messages]);
-      reset();
-      setIsSuccess(true);
-      
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 3000);
+      if (response.data.success) {
+        const newMessage = response.data.data[0];
+        setMessages([newMessage, ...messages]);
+        reset();
+        setIsSuccess(true);
+        
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 3000);
+      }
     } catch (err) {
       console.error('Erro ao enviar recado:', err);
       setError('Ocorreu um erro ao enviar seu recado. Por favor, tente novamente.');
@@ -215,29 +215,47 @@ export default function RecadosPage() {
             Recados Recebidos
           </h2>
           
-          <div className="space-y-6">
-            {messages.map((msg) => (
-              <motion.div
-                key={msg.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-primary/10 rounded-full text-primary">
-                    <FiUser className="w-6 h-6" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="font-bold">{msg.name}</h3>
-                      <span className="text-sm text-text-light">{formatDate(msg.date)}</span>
+          {isLoading ? (
+            <div className="flex justify-center py-12">
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {messages.length > 0 ? (
+                messages.map((msg) => (
+                  <motion.div
+                    key={msg.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300"
+                  >
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="p-3 bg-primary/10 rounded-full text-primary flex-shrink-0">
+                          <FiUser className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-lg text-primary">{msg.name}</h3>
+                          <span className="text-xs text-text-light">{formatDate(msg.created_at)}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="pl-2 border-l-2 border-primary/30">
+                        <p className="text-text-light italic">{msg.content || msg.message}</p>
+                      </div>
                     </div>
-                    <p className="text-text-light">{msg.message}</p>
+                  </motion.div>
+                ))
+              ) : (
+                <div className="text-center py-8 text-text-light col-span-full">
+                  <div className="bg-secondary p-8 rounded-lg">
+                    <p className="mb-2">Nenhum recado enviado ainda.</p>
+                    <p className="font-medium">Seja o primeiro a deixar uma mensagem para os noivos!</p>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </Section>
       

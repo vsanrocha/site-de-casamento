@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { baserowAPI, TABLES, MessageData } from '@/app/utils/baserow';
+import { supabase, TABLES, MessageData } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,15 +13,26 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Formatar os dados para o Baserow
-    const baserowData = {
+    // Formatar os dados para o Supabase
+    const messageData = {
       name: data.name,
-      message: data.message,
-      date: new Date().toISOString(),
+      content: data.message,
+      created_at: new Date().toISOString(),
     };
     
-    // Enviar para o Baserow
-    const result = await baserowAPI.createRow(TABLES.MESSAGES, baserowData);
+    // Enviar para o Supabase
+    const { data: result, error } = await supabase
+      .from(TABLES.MESSAGES)
+      .insert(messageData)
+      .select();
+      
+    if (error) {
+      console.error('Erro ao inserir no Supabase:', error);
+      return NextResponse.json(
+        { error: 'Ocorreu um erro ao processar sua mensagem. Por favor, tente novamente.' },
+        { status: 500 }
+      );
+    }
     
     return NextResponse.json({ success: true, data: result });
   } catch (error) {
@@ -35,14 +46,23 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const results = await baserowAPI.getRows(TABLES.MESSAGES);
+    // Esta rota não deve ser acessível publicamente em produção
+    // Adicione autenticação adequada antes de usar em ambiente real
     
-    // Ordenar mensagens por data (mais recentes primeiro)
-    const sortedResults = results.sort((a: Record<string, unknown>, b: Record<string, unknown>) => {
-      return new Date(b.date as string).getTime() - new Date(a.date as string).getTime();
-    });
+    const { data, error } = await supabase
+      .from(TABLES.MESSAGES)
+      .select('*')
+      .order('created_at', { ascending: false });
+      
+    if (error) {
+      console.error('Erro ao buscar no Supabase:', error);
+      return NextResponse.json(
+        { error: 'Ocorreu um erro ao buscar as mensagens.' },
+        { status: 500 }
+      );
+    }
     
-    return NextResponse.json({ success: true, data: sortedResults });
+    return NextResponse.json({ success: true, data });
   } catch (error) {
     console.error('Erro ao buscar mensagens:', error);
     return NextResponse.json(
