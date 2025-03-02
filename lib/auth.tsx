@@ -4,18 +4,19 @@ import React from 'react'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { useRouter } from 'next/navigation'
+import { User, AuthResponse } from '@supabase/supabase-js'
 
 type AuthContextType = {
-  user: string | null
+  user: User | null
   loading: boolean
-  signIn: (email: string, password: string) => Promise<string>
+  signIn: (email: string, password: string) => Promise<AuthResponse>
   signOut: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<string | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const router = useRouter()
   const supabase = createClient()
@@ -41,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [supabase.auth])
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (email: string, password: string): Promise<AuthResponse> => {
     const response = await supabase.auth.signInWithPassword({
       email,
       password,

@@ -16,7 +16,7 @@ export default function MessagesTable({ messages }: MessagesTableProps) {
     return (
       message.name.toLowerCase().includes(searchLower) ||
       (message.email && message.email.toLowerCase().includes(searchLower)) ||
-      message.content.toLowerCase().includes(searchLower)
+      (message.content && message.content.toLowerCase().includes(searchLower))
     );
   });
 
@@ -70,7 +70,7 @@ export default function MessagesTable({ messages }: MessagesTableProps) {
                       <p className={expandedMessage === message.id ? '' : 'line-clamp-3'}>
                         {message.content}
                       </p>
-                      {message.content.length > 100 && (
+                      {message.content &&message.content.length > 100 && (
                         <button 
                           className="text-primary hover:underline mt-1 text-xs"
                           onClick={(e) => {
