@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase, TABLES, GiftData } from '@/lib/supabase';
+import { supabase, TABLES } from '@/lib/supabase';
 
 export async function GET() {
   try {
