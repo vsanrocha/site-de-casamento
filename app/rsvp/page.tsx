@@ -74,7 +74,7 @@ export default function RSVPPage() {
                     <strong>Encerramento:</strong> 21:00
                   </p>
                   <p className="text-text-light mb-2">
-                    <strong>Local:</strong> Espaço Sngular
+                    <strong>Local:</strong> Espaço Singular
                   </p>
                   <p className="text-text-light">
                     <strong>Endereço:</strong> Avenida Armando Fajardo, 3944, Cruzeiro Celeste - João Monlevade - MG

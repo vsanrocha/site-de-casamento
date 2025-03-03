@@ -72,7 +72,7 @@ export default function DetalhesPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-serif font-bold mb-2">Local</h3>
-                    <p className="text-text-light">Espaço Sngular</p>
+                    <p className="text-text-light">Espaço Singular</p>
                     <p className="text-text-light">{localAddress}</p>
                     <div className="flex mt-3 space-x-3">
                       <a 
