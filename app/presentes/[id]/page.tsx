@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import { FiArrowLeft, FiCheck, FiShoppingCart } from 'react-icons/fi';
+import { FiCheck } from 'react-icons/fi';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Section from '../../components/Section';

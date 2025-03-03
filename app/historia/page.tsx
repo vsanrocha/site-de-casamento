@@ -4,12 +4,6 @@ import Section from "../components/Section";
 import Timeline from "../components/Timeline";
 import Hero from "../components/Hero";
 import { FaQuoteLeft } from "react-icons/fa";
-import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/components/ui/card";
 
 // Dados da timeline
 const timelineEvents = [

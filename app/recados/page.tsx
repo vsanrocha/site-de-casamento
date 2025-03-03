@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
-import { FiUser } from 'react-icons/fi';
 import axios from 'axios';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -96,15 +95,6 @@ export default function RecadosPage() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    }).format(date);
   };
 
   return (
