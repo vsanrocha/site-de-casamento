@@ -20,7 +20,7 @@ export default function RSVPPage() {
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-text-light">
             Por favor, preencha o formulário abaixo para confirmar sua presença no nosso casamento. 
-            Pedimos que confirme até o dia <strong>15 de Abril de 2025</strong> para que possamos 
+            Pedimos que confirme até o dia <strong>18 de Setembro de 2025</strong> para que possamos 
             organizar tudo da melhor forma possível.
           </p>
         </div>
@@ -36,26 +36,32 @@ export default function RSVPPage() {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <div className="bg-white  p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-serif font-bold mb-4">Local e Horário</h3>
               <p className="text-text-light mb-2">
-                <strong>Data:</strong> 15 de Maio de 2025 (Quinta-feira)
+                <strong>Data:</strong> 18 de Outubro de 2025 (Sábado)
               </p>
               <p className="text-text-light mb-2">
-                <strong>Cerimônia:</strong> 16:00
+                <strong>Boas-vindas:</strong> 16:00
+              </p>
+              <p className="text-text-light mb-2">
+                <strong>Cerimônia:</strong> 16:30
               </p>
               <p className="text-text-light mb-2">
                 <strong>Recepção:</strong> 18:00
               </p>
               <p className="text-text-light mb-2">
-                <strong>Local:</strong> Espaço Jardim das Flores
+                <strong>Encerramento:</strong> 21:00
+              </p>
+              <p className="text-text-light mb-2">
+                <strong>Local:</strong> Espaço Sngular
               </p>
               <p className="text-text-light">
-                <strong>Endereço:</strong> Rua das Flores, 123 - São Paulo, SP
+                <strong>Endereço:</strong> Avenida Armando Fajardo, 3944, Cruzeiro Celeste - João Monlevade - MG
               </p>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <div className="bg-white  p-6 rounded-lg shadow-md">
               <h3 className="text-xl font-serif font-bold mb-4">Dress Code e Observações</h3>
               <p className="text-text-light mb-2">
                 <strong>Traje:</strong> Social

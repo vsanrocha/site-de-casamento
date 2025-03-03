@@ -49,7 +49,7 @@ const timelineEvents = [
   },
   {
     id: 6,
-    date: "15 de Maio de 2025",
+    date: "18 de Outubro de 2025",
     title: "O Grande Dia",
     description:
       "O dia em que oficializaremos nossa união perante Deus, familiares e amigos. Estamos ansiosos para celebrar este momento com as pessoas que amamos.",

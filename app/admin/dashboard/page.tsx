@@ -45,9 +45,9 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
+    <div className="min-h-screen bg-gray-50  p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white  rounded-lg shadow-md p-6 mb-6">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-serif font-bold">Dashboard Administrativo</h1>
             <form action="/api/auth/signout" method="post">

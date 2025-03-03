@@ -40,7 +40,7 @@ const Header = () => {
       <div className={`container mx-auto px-4 flex justify-between items-center ${mobileMenuOpen ? 'md:flex' : 'flex'}`}>
         {!mobileMenuOpen && (
           <Link href="/" className="font-serif text-2xl font-bold text-primary">
-            Ivan & Mirela
+            Mirela & Ivan
           </Link>
         )}
 
@@ -94,7 +94,7 @@ const Header = () => {
                 className="font-serif text-2xl font-bold text-primary"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Ivan & Mirela
+                Mirela & Ivan
               </Link>
               
               <button 

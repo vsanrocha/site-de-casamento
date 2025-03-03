@@ -68,13 +68,13 @@ export default function RSVPTable({ rsvps }: RSVPTableProps) {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <div className="relative w-full sm:w-64">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <svg className="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
           </div>
           <input
             type="search"
-            className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary focus:border-primary  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+            className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary focus:border-primary"
             placeholder="Buscar confirmações..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -93,8 +93,8 @@ export default function RSVPTable({ rsvps }: RSVPTableProps) {
       </div>
 
       <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
+        <table className="w-full text-sm text-left text-gray-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="py-3 px-6">Nome</th>
               <th scope="col" className="py-3 px-6">Email</th>
@@ -108,8 +108,8 @@ export default function RSVPTable({ rsvps }: RSVPTableProps) {
           <tbody>
             {filteredRSVPs.length > 0 ? (
               filteredRSVPs.map((rsvp) => (
-                <tr key={rsvp.id} className="bg-white border-b  dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <td className="py-4 px-6 font-medium text-gray-900 dark:text-white">
+                <tr key={rsvp.id} className="bg-white border-b hover:bg-gray-50">
+                  <td className="py-4 px-6 font-medium text-gray-900">
                     {rsvp.name}
                   </td>
                   <td className="py-4 px-6">{rsvp.email}</td>
@@ -135,7 +135,7 @@ export default function RSVPTable({ rsvps }: RSVPTableProps) {
                 </tr>
               ))
             ) : (
-              <tr className="bg-white border-b  dark:border-gray-700">
+              <tr className="bg-white border-b">
                 <td colSpan={7} className="py-4 px-6 text-center">
                   {searchTerm ? 'Nenhuma confirmação encontrada para esta busca.' : 'Nenhuma confirmação de presença recebida ainda.'}
                 </td>
@@ -145,7 +145,7 @@ export default function RSVPTable({ rsvps }: RSVPTableProps) {
         </table>
       </div>
       
-      <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+      <div className="mt-4 text-sm text-gray-500">
         Total de confirmações: {filteredRSVPs.length}
       </div>
     </div>

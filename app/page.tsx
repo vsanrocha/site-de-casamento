@@ -7,8 +7,8 @@ import Section from "./components/Section";
 import Countdown from "./components/Countdown";
 
 export default function Home() {
-  // Data do casamento: 15 de Maio de 2025
-  const weddingDate = new Date('2025-05-15T16:00:00-03:00');
+  // Data do casamento: 18 de Outubro de 2025
+  const weddingDate = new Date('2025-10-18T16:00:00-03:00');
 
   return (
     <>
@@ -19,7 +19,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero-bg-light.jpg"
-            alt="Ivan e Mirela"
+            alt="Mirela e Ivan"
             fill
             priority
             className="object-cover"
@@ -29,9 +29,9 @@ export default function Home() {
         
         <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-4 text-primary">
-            Ivan & Mirela
+            Mirela & Ivan
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-foreground">15 de Maio de 2025</p>
+          <p className="text-xl md:text-2xl mb-8 text-foreground">18 de Outubro de 2025</p>
           <Link href="/rsvp" className="btn btn-primary">
             Confirmar Presença
           </Link>
@@ -57,8 +57,8 @@ export default function Home() {
               <FiCalendar className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-bold mb-2">Data</h3>
-            <p className="text-text-light">15 de Maio de 2025</p>
-            <p className="text-text-light">Quinta-feira</p>
+            <p className="text-text-light">18 de Outubro de 2025</p>
+            <p className="text-text-light">Sábado</p>
           </div>
           
           <div className="text-center p-6 bg-white rounded-lg shadow-sm">
@@ -66,7 +66,8 @@ export default function Home() {
               <FiClock className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-bold mb-2">Horário</h3>
-            <p className="text-text-light">Cerimônia: 16:00</p>
+            <p className="text-text-light">Boas-vindas: 16:00</p>
+            <p className="text-text-light">Cerimônia: 16:30</p>
             <p className="text-text-light">Recepção: 18:00</p>
           </div>
           
@@ -75,8 +76,8 @@ export default function Home() {
               <FiMapPin className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-bold mb-2">Local</h3>
-            <p className="text-text-light">Espaço Jardim das Flores</p>
-            <p className="text-text-light">São Paulo, SP</p>
+            <p className="text-text-light">Espaço Sngular</p>
+            <p className="text-text-light">João Monlevade, MG</p>
           </div>
         </div>
       </Section>
@@ -102,7 +103,7 @@ export default function Home() {
           <div className="flex-1 relative h-80 w-full rounded-lg overflow-hidden shadow-md">
             <Image
               src="/images/timeline-3.jpg"
-              alt="Ivan e Mirela"
+              alt="Mirela e Ivan"
               fill
               className="object-cover"
             />
@@ -144,7 +145,7 @@ export default function Home() {
       >
         <div className="text-center bg-white p-8 rounded-lg shadow-sm max-w-2xl mx-auto">
           <p className="text-text-light mb-8">
-            Por favor, confirme sua presença até o dia 15 de Abril de 2025 para que possamos 
+            Por favor, confirme sua presença até o dia 18 de Setembro de 2025 para que possamos 
             organizar tudo da melhor forma possível.
           </p>
           <Link href="/rsvp" className="btn btn-primary">

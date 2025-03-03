@@ -103,7 +103,7 @@ export default function RSVPForm() {
                   errors.name
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800`}
+                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white `}
                 placeholder="Seu nome"
                 {...register('name')}
               />
@@ -123,7 +123,7 @@ export default function RSVPForm() {
                   errors.email
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800`}
+                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white `}
                 placeholder="seu.email@exemplo.com"
                 {...register('email')}
               />
@@ -145,7 +145,7 @@ export default function RSVPForm() {
                   errors.phone
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800`}
+                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white `}
                 placeholder="(00) 00000-0000"
                 {...register('phone')}
               />
@@ -199,7 +199,7 @@ export default function RSVPForm() {
                   errors.guests
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800`}
+                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white `}
                 {...register('guests')}
               />
               {errors.guests && (
@@ -218,7 +218,7 @@ export default function RSVPForm() {
             <textarea
               id="message"
               rows={4}
-              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800"
+              className="w-full px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white "
               placeholder="Alguma observação especial?"
               {...register('message')}
             />

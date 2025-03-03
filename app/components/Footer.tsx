@@ -13,9 +13,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="font-serif text-2xl font-bold text-primary">
-              Ivan & Mirela
+              Mirela & Ivan
             </Link>
-            <p className="text-text-light mt-2">15 de Maio de 2025</p>
+            <p className="text-text-light mt-2">18 de Outubro de 2025</p>
           </div>
 
           <div className="flex flex-col items-center md:items-end">
@@ -32,7 +32,7 @@ export default function Footer() {
                 <FiInstagram size={24} />
               </motion.a>
               <motion.a
-                href="mailto:contato@ivanemirela.com"
+                href="mailto:contato@mirelaivan.com"
                 className="text-text-light hover:text-primary transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -82,7 +82,7 @@ export default function Footer() {
 
         <div className="border-t border-primary/10 pt-6 text-center">
           <p className="text-text-light text-sm flex items-center justify-center">
-            &copy; {currentYear} Ivan & Mirela. Feito com
+            &copy; {currentYear} Mirela & Ivan. Feito com
             <FiHeart className="mx-1 text-primary" /> para nosso grande dia.
           </p>
         </div>

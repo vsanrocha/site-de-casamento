@@ -139,7 +139,7 @@ export default function RecadosPage() {
                   errors.name
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800`}
+                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white `}
                 placeholder="Como você gostaria de ser identificado"
                 {...register('name')}
               />
@@ -159,7 +159,7 @@ export default function RecadosPage() {
                   errors.message
                     ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
                     : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800`}
+                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white `}
                 placeholder="Escreva uma mensagem especial para os noivos"
                 {...register('message')}
               />
@@ -227,7 +227,7 @@ export default function RecadosPage() {
                     key={msg.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300"
+                    className="bg-white  p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300"
                   >
                     <div className="flex flex-col">
                       <div className="flex items-center gap-3 mb-4">

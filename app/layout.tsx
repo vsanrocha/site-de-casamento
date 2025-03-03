@@ -16,8 +16,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Ivan & Mirela | Nosso Casamento",
-  description: "Site do casamento de Ivan e Mirela. Junte-se a nós nesse dia especial!",
+  title: "Mirela & Ivan | Nosso Casamento",
+  description: "Site do casamento de Mirela e Ivan. Junte-se a nós nesse dia especial!",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${montserrat.variable} ${lora.variable}`}>
+    <html lang="pt-BR" className={`${montserrat.variable} ${lora.variable} light`}>
       <body>
         <AuthProvider>
           {children}

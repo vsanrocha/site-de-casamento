@@ -9,7 +9,7 @@ const photos = [
   {
     id: 1,
     src: "/images/gallery-1.jpg",
-    alt: "Ivan e Mirela na praia",
+    alt: "Mirela e Ivan na praia",
     width: 600,
     height: 600,
   },
@@ -102,8 +102,8 @@ export default function GaleriaPage() {
             Durante a cerimônia e recepção, sinta-se à vontade para tirar fotos e compartilhá-las 
             usando nossa hashtag oficial. As melhores fotos serão adicionadas à nossa galeria!
           </p>
-          <div className="inline-block bg-white dark:bg-gray-800 px-6 py-3 rounded-full text-primary font-bold text-xl">
-            #IvanEMirela2025
+          <div className="inline-block bg-white px-6 py-3 rounded-full text-primary font-bold text-xl">
+            #Mirela&IvanS2
           </div>
         </div>
       </Section>

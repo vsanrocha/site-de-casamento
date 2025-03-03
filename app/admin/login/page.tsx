@@ -52,16 +52,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-serif font-bold text-primary mb-2">
-            Ivan & Mirela
+            Mirela & Ivan
           </h1>
           <p className="text-text-light">Área Administrativa</p>
         </div>
         
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+        <div className="bg-white rounded-lg shadow-md p-8">
           <h2 className="text-2xl font-serif font-bold mb-6 text-center">Login</h2>
           
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -79,8 +79,8 @@ export default function LoginPage() {
                   className={`w-full pl-10 px-4 py-2 rounded-md border ${
                     errors.email
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                      : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                  } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800`}
+                      : 'border-gray-300 focus:border-primary focus:ring-primary'
+                  } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white`}
                   placeholder="admin@exemplo.com"
                   {...register('email')}
                 />
@@ -104,8 +104,8 @@ export default function LoginPage() {
                   className={`w-full pl-10 px-4 py-2 rounded-md border ${
                     errors.password
                       ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                      : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                  } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white dark:bg-gray-800`}
+                      : 'border-gray-300 focus:border-primary focus:ring-primary'
+                  } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white`}
                   placeholder="••••••••"
                   {...register('password')}
                 />
@@ -116,8 +116,8 @@ export default function LoginPage() {
             </div>
             
             {error && (
-              <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
-                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-sm text-red-600">{error}</p>
               </div>
             )}
             
