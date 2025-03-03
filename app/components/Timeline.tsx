@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 interface TimelineEvent {
   id: number;
@@ -32,25 +34,29 @@ export default function Timeline({ events }: TimelineProps) {
           } mb-16 last:mb-0`}
         >
           <div className="flex-1 md:px-8">
-            <div className="bg-secondary rounded-lg p-6 shadow-md">
-              <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm rounded-full mb-3">
-                {event.date}
-              </span>
-              <h3 className="text-xl font-serif font-bold mb-2">{event.title}</h3>
-              <p className="text-text-light">{event.description}</p>
-              
-              {event.image && (
-                <div className="mt-4 relative h-48 rounded-md overflow-hidden">
-                  <Image
-                    src={event.image}
-                    alt={event.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-              )}
-            </div>
+            <Card className="shadow-md">
+              <CardHeader>
+                <Badge variant="secondary" className="w-fit">
+                  {event.date}
+                </Badge>
+                <h3 className="text-xl font-serif font-bold">{event.title}</h3>
+              </CardHeader>
+              <CardContent>
+                <p className="text-text-light">{event.description}</p>
+                
+                {event.image && (
+                  <div className="mt-4 relative h-48 rounded-md overflow-hidden">
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </div>
           
           <div className="absolute left-0 md:left-1/2 top-6 w-4 h-4 bg-primary rounded-full md:-translate-x-[8px] shadow-md" />

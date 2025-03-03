@@ -5,6 +5,7 @@ import { RSVPData, MessageData, GiftData } from '@/lib/supabase';
 import RSVPTable from './RSVPTable';
 import MessagesTable from './MessagesTable';
 import GiftsTable from './GiftsTable';
+import { Button } from "@/components/ui/button"
 
 type Tab = 'rsvp' | 'messages' | 'gifts';
 
@@ -22,49 +23,49 @@ export default function DashboardTabs({ rsvps, messages, gifts }: DashboardTabsP
       <div className="border-b border-gray-200 mb-6">
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center">
           <li className="mr-2">
-            <button
+            <Button
               onClick={() => setActiveTab('rsvp')}
-              className={`inline-block p-4 rounded-t-lg ${
+              className={`${
                 activeTab === 'rsvp'
-                  ? 'text-primary border-b-2 border-primary'
-                  : 'hover:text-gray-600 hover:border-gray-300'
-              }`}
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-transparent text-foreground'
+              } px-4 py-2 rounded-md`}
             >
               Confirmações de Presença
               <span className="ml-2 bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
                 {rsvps.length}
               </span>
-            </button>
+            </Button>
           </li>
           <li className="mr-2">
-            <button
+            <Button
               onClick={() => setActiveTab('messages')}
-              className={`inline-block p-4 rounded-t-lg ${
+              className={`${
                 activeTab === 'messages'
-                  ? 'text-primary border-b-2 border-primary'
-                  : 'hover:text-gray-600 hover:border-gray-300'
-              }`}
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-transparent text-foreground'
+              } px-4 py-2 rounded-md`}
             >
               Mensagens
               <span className="ml-2 bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
                 {messages.length}
               </span>
-            </button>
+            </Button>
           </li>
           <li className="mr-2">
-            <button
+            <Button
               onClick={() => setActiveTab('gifts')}
-              className={`inline-block p-4 rounded-t-lg ${
+              className={`${
                 activeTab === 'gifts'
-                  ? 'text-primary border-b-2 border-primary'
-                  : 'hover:text-gray-600 hover:border-gray-300'
-              }`}
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-transparent text-foreground'
+              } px-4 py-2 rounded-md`}
             >
               Presentes
               <span className="ml-2 bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
                 {gifts.length}
               </span>
-            </button>
+            </Button>
           </li>
         </ul>
       </div>

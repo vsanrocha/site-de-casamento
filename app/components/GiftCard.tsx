@@ -1,6 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card"
 
 interface GiftCardProps {
   id: string;
@@ -20,7 +27,7 @@ const GiftCard: React.FC<GiftCardProps> = ({
   purchased = false
 }) => {
   return (
-    <div className="card overflow-hidden transition-all duration-300 hover:shadow-lg bg-white">
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
       <div className="relative aspect-square">
         <Image
           src={image}
@@ -37,29 +44,31 @@ const GiftCard: React.FC<GiftCardProps> = ({
         )}
       </div>
       
-      <div className="p-4">
-        <h3 className="font-serif text-xl font-bold mb-2">{title}</h3>
+      <CardHeader>
+        <h3 className="font-serif text-xl font-bold">{title}</h3>
+      </CardHeader>
+      
+      <CardContent>
         <p className="text-text-light text-sm mb-3 line-clamp-2">{description}</p>
-        <div className="flex items-center justify-between">
-          <span className="text-primary font-bold">
-            R$ {price.toLocaleString('pt-BR')}
-          </span>
-          
-          {!purchased ? (
-            <Link 
-              href={`/presentes/${id}`}
-              className="btn btn-primary text-sm py-2 px-4"
-            >
+        <p className="text-primary font-bold">
+          R$ {price.toLocaleString('pt-BR')}
+        </p>
+      </CardContent>
+
+      <CardFooter>
+        {!purchased ? (
+          <Button asChild variant="default" className="w-full">
+            <Link href={`/presentes/${id}`}>
               Presentear
             </Link>
-          ) : (
-            <span className="text-text-light text-sm">
-              Obrigado!
-            </span>
-          )}
-        </div>
-      </div>
-    </div>
+          </Button>
+        ) : (
+          <span className="text-text-light text-sm">
+            Obrigado!
+          </span>
+        )}
+      </CardFooter>
+    </Card>
   );
 };
 

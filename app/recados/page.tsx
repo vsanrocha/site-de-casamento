@@ -11,6 +11,15 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Section from "../components/Section";
 import Hero from "../components/Hero";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardFooter,
+} from "@/components/ui/card";
 
 interface MessageFormData {
   name: string;
@@ -111,9 +120,62 @@ export default function RecadosPage() {
       {/* Form Section */}
       <Section>
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-serif font-bold text-center mb-8">
-            Deixe seu Recado
-          </h2>
+          <Card className="max-w-xl mx-auto">
+            <CardHeader>
+              <h2 className="font-serif text-2xl font-bold">Deixe seu Recado</h2>
+              <p className="text-text-light">
+                Compartilhe seus votos e desejos para os noivos
+              </p>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-1">
+                    Seu Nome *
+                  </label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Como você gostaria de ser identificado"
+                    {...register('name')}
+                  />
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-destructive">{errors.name.message}</p>
+                  )}
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium mb-1">
+                    Sua Mensagem *
+                  </label>
+                  <Textarea
+                    id="message"
+                    placeholder="Escreva uma mensagem especial para os noivos"
+                    {...register('message')}
+                  />
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-destructive">{errors.message.message}</p>
+                  )}
+                </div>
+                
+                {error && (
+                  <div className="bg-destructive/10 text-destructive p-3 rounded-md text-sm">
+                    {error}
+                  </div>
+                )}
+                
+                <div className="text-center">
+                  <Button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full"
+                  >
+                    {isSubmitting ? 'Enviando...' : 'Enviar Recado'}
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
           
           {isSuccess && (
             <motion.div
@@ -127,90 +189,6 @@ export default function RecadosPage() {
             </motion.div>
           )}
           
-          <form onSubmit={handleSubmit(onSubmit)} className="bg-secondary p-6 rounded-lg mb-12">
-            <div className="mb-6">
-              <label htmlFor="name" className="block text-sm font-medium mb-1">
-                Seu Nome *
-              </label>
-              <input
-                id="name"
-                type="text"
-                className={`w-full px-4 py-2 rounded-md border ${
-                  errors.name
-                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                    : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white `}
-                placeholder="Como você gostaria de ser identificado"
-                {...register('name')}
-              />
-              {errors.name && (
-                <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-              )}
-            </div>
-            
-            <div className="mb-6">
-              <label htmlFor="message" className="block text-sm font-medium mb-1">
-                Sua Mensagem *
-              </label>
-              <textarea
-                id="message"
-                rows={4}
-                className={`w-full px-4 py-2 rounded-md border ${
-                  errors.message
-                    ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                    : 'border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-primary'
-                } focus:outline-none focus:ring-2 focus:ring-opacity-20 bg-white `}
-                placeholder="Escreva uma mensagem especial para os noivos"
-                {...register('message')}
-              />
-              {errors.message && (
-                <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>
-              )}
-            </div>
-            
-            {error && (
-              <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md mb-6">
-                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
-              </div>
-            )}
-            
-            <div className="text-center">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn btn-primary min-w-[200px] relative"
-              >
-                {isSubmitting ? (
-                  <span className="inline-flex items-center">
-                    <svg
-                      className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Enviando...
-                  </span>
-                ) : (
-                  'Enviar Recado'
-                )}
-              </button>
-            </div>
-          </form>
-          
           <h2 className="text-3xl font-serif font-bold text-center mb-8">
             Recados Recebidos
           </h2>
@@ -222,29 +200,20 @@ export default function RecadosPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {messages.length > 0 ? (
-                messages.map((msg) => (
-                  <motion.div
-                    key={msg.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-white  p-6 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300"
-                  >
-                    <div className="flex flex-col">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-3 bg-primary/10 rounded-full text-primary flex-shrink-0">
-                          <FiUser className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-lg text-primary">{msg.name}</h3>
-                          <span className="text-xs text-text-light">{formatDate(msg.created_at)}</span>
-                        </div>
-                      </div>
-                      
-                      <div className="pl-2 border-l-2 border-primary/30">
-                        <p className="text-text-light italic">{msg.content || msg.message}</p>
-                      </div>
-                    </div>
-                  </motion.div>
+                messages.map((message) => (
+                  <Card key={message.id} className="hover:shadow-lg transition-shadow duration-300">
+                    <CardHeader>
+                      <h3 className="font-serif text-xl font-bold">{message.name}</h3>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-text-light">{message.message}</p>
+                    </CardContent>
+                    <CardFooter>
+                      <p className="text-sm text-text-light">
+                        {new Date(message.created_at).toLocaleDateString('pt-BR')}
+                      </p>
+                    </CardFooter>
+                  </Card>
                 ))
               ) : (
                 <div className="text-center py-8 text-text-light col-span-full">

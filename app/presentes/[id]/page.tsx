@@ -8,6 +8,9 @@ import { FiArrowLeft, FiCheck, FiShoppingCart } from 'react-icons/fi';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Section from '../../components/Section';
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 // Lista de presentes (mesma do arquivo da página principal)
 const gifts = [
@@ -107,9 +110,11 @@ export default function GiftDetailPage() {
           <div className="text-center">
             <h2 className="text-2xl font-serif font-bold mb-4">Presente não encontrado</h2>
             <p className="text-text-light mb-6">O presente que você está procurando não está disponível.</p>
-            <Link href="/presentes" className="btn btn-primary">
-              Voltar para Lista de Presentes
-            </Link>
+            <Button asChild variant="default" className="btn btn-primary">
+              <Link href="/presentes">
+                Voltar para Lista de Presentes
+              </Link>
+            </Button>
           </div>
         </Section>
         <Footer />
@@ -143,9 +148,11 @@ export default function GiftDetailPage() {
       <>
         <Header />
         <Section>
-          <Link href="/presentes" className="inline-flex items-center text-primary mb-6">
-            <FiArrowLeft className="mr-2" /> Voltar para Lista de Presentes
-          </Link>
+          <Button asChild variant="link" className="inline-flex items-center text-primary mb-6">
+            <Link href="/presentes">
+              ← Voltar para lista de presentes
+            </Link>
+          </Button>
           
           <div className="flex flex-col md:flex-row gap-8">
             <div className="md:w-1/2">
@@ -175,9 +182,11 @@ export default function GiftDetailPage() {
               <div className="bg-primary/10 p-6 rounded-lg">
                 <h3 className="text-xl font-serif font-bold mb-3">Obrigado!</h3>
                 <p>Este presente já foi adquirido por um dos nossos convidados.</p>
-                <Link href="/presentes" className="btn btn-primary mt-4 inline-block">
-                  Ver outros presentes
-                </Link>
+                <Button asChild variant="default" className="btn btn-primary mt-4 inline-block">
+                  <Link href="/presentes">
+                    Ver Outros Presentes
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -191,9 +200,11 @@ export default function GiftDetailPage() {
     <>
       <Header />
       <Section>
-        <Link href="/presentes" className="inline-flex items-center text-primary mb-6">
-          <FiArrowLeft className="mr-2" /> Voltar para Lista de Presentes
-        </Link>
+        <Button asChild variant="link" className="inline-flex items-center text-primary mb-6">
+          <Link href="/presentes">
+            ← Voltar para lista de presentes
+          </Link>
+        </Button>
         
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/2">
@@ -228,69 +239,40 @@ export default function GiftDetailPage() {
                 <h3 className="text-xl font-serif font-bold mb-4">Presentear</h3>
                 
                 <div className="mb-4">
-                  <label htmlFor="name" className="block text-sm font-medium mb-1">
-                    Seu Nome
-                  </label>
-                  <input
+                  <Input
                     type="text"
-                    id="name"
-                    name="name"
+                    placeholder="Seu nome"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
                 
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm font-medium mb-1">
-                    Seu Email
-                  </label>
-                  <input
+                  <Input
                     type="email"
-                    id="email"
-                    name="email"
+                    placeholder="Seu email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
                 
                 <div className="mb-4">
-                  <label htmlFor="message" className="block text-sm font-medium mb-1">
-                    Mensagem (opcional)
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
+                  <Textarea
+                    placeholder="Sua mensagem (opcional)"
                     value={formData.message}
                     onChange={handleInputChange}
-                    rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
                 
-                <button
+                <Button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn btn-primary w-full flex items-center justify-center"
+                  className="w-full"
                 >
-                  {isSubmitting ? (
-                    <span className="inline-flex items-center">
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-text-on-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Processando...
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center">
-                      <FiShoppingCart className="mr-2" />
-                      Confirmar Presente
-                    </span>
-                  )}
-                </button>
+                  {isSubmitting ? 'Enviando...' : 'Confirmar Presente'}
+                </Button>
                 
                 <p className="text-xs text-text-light mt-4 text-center">
                   Ao confirmar, você será redirecionado para finalizar o pagamento.

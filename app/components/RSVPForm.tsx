@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface RSVPFormData {
   name: string;
@@ -80,14 +81,19 @@ export default function RSVPForm() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6 text-center"
         >
-          <h3 className="text-xl font-serif font-bold text-green-700 dark:text-green-400 mb-2">
-            Confirmação Enviada!
-          </h3>
-          <p className="text-green-600 dark:text-green-300">
-            Obrigado por confirmar sua presença. Estamos ansiosos para celebrar com você!
-          </p>
+          <Card className="border-green-200 dark:border-green-800">
+            <CardHeader>
+              <CardTitle className="text-xl font-serif text-green-700 dark:text-green-400">
+                Confirmação Enviada!
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-green-600 dark:text-green-300">
+                Obrigado por confirmar sua presença. Estamos ansiosos para celebrar com você!
+              </p>
+            </CardContent>
+          </Card>
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -225,9 +231,11 @@ export default function RSVPForm() {
           </div>
 
           {error && (
-            <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
-              <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
-            </div>
+            <Card className="border-red-200 dark:border-red-800">
+              <CardContent className="pt-6">
+                <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              </CardContent>
+            </Card>
           )}
 
           <div className="text-center">

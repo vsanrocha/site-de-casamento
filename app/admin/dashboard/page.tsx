@@ -2,6 +2,11 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/utils/supabase/server'
 import { TABLES } from '@/lib/supabase'
 import DashboardTabs from './components/DashboardTabs'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+} from "@/components/ui/card"
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -47,9 +52,14 @@ export default async function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50  p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white  rounded-lg shadow-md p-6 mb-6">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-serif font-bold">Dashboard Administrativo</h1>
+        <Card className="mb-6">
+          <CardHeader>
+            <h1 className="text-2xl font-bold mb-2">Dashboard</h1>
+            <p className="text-text-light">
+              Bem-vindo ao painel administrativo do seu site de casamento.
+            </p>
+          </CardHeader>
+          <CardContent>
             <form action="/api/auth/signout" method="post">
               <button 
                 type="submit"
@@ -58,16 +68,13 @@ export default async function DashboardPage() {
                 Sair
               </button>
             </form>
-          </div>
-          
-          <p className="mb-6">Bem-vindo, {user.email}</p>
-          
-          <DashboardTabs 
-            rsvps={rsvps || []} 
-            messages={messages || []} 
-            gifts={gifts || []} 
-          />
-        </div>
+          </CardContent>
+        </Card>
+        <DashboardTabs 
+          rsvps={rsvps || []} 
+          messages={messages || []} 
+          gifts={gifts || []} 
+        />
       </div>
     </div>
   )
